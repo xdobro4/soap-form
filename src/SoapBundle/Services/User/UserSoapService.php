@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Exception\InvalidArgumentException;
-use Symfony\Component\Validator\Validator\RecursiveValidator;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserSoapService
 {
@@ -20,7 +20,7 @@ class UserSoapService
 	/** @var string */
 	private $salt;
 
-	public function __construct(EntityManager $em, RecursiveValidator $validator, string $salt)
+	public function __construct(EntityManager $em, ValidatorInterface $validator, string $salt)
 	{
 		$this->em = $em;
 		$this->salt = $salt;

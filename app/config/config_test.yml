@@ -19,3 +19,6 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+parameters:
+    soap_url: null #musela byse mokovat (nepodstatné testovat v úkolu)

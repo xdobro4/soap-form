@@ -14,20 +14,23 @@ class UserFormService implements IFormService
 	/** @var EntityManager */
 	private $userSoapService;
 
-	public function __construct(UserSoapService $userSoapService)
+	/** @var bool */
+	private $soapUrl;
+
+	public function __construct(UserSoapService $userSoapService, $soapUrl)
 	{
 		$this->userSoapService = $userSoapService;
+		$this->soapUrl = $soapUrl;
 	}
 
 	/**
 	 * @param Form $form
 	 * @param User $entity
 	 *
-	 * @return array
 	 * @throws InvalidStateException
 	 * @throws \SoapFault
 	 */
-	public function processForm(Form $form, $entity): array
+	public function processForm(Form $form, $entity)
 	{
 		if (!$form->isSubmitted() || !$form->isValid()) {
 			throw new InvalidStateException('invalid form');
@@ -35,6 +38,13 @@ class UserFormService implements IFormService
 
 		$data = $form->getData();
 
-		return $this->userSoapService->createUser($data['name'], $data['email'], $data['password'], $data['permission']);
+		if ($this->soapUrl !== NULL) {
+			$client = new \SoapClient($this->soapUrl);
+
+			$client->createUser($data['name'], $data['email'], $data['password'], $data['permission']);
+		}
+		else {
+			$this->userSoapService->createUser($data['name'], $data['email'], $data['password'], $data['permission']);
+		}
 	}
 }

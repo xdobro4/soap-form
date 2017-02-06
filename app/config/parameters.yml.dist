@@ -8,8 +8,13 @@ parameters:
     database_user: root
     database_password: null
     database_version: '5.7'
+
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
+
     secret: 6276a4aafe4bd8df30ba3e9c4e778a953e2e5466
+
+    soap_url: null
+#    soap_url: http://localhost:8000/soap?WSDL # pokud je nastavena dotazuje se přes soap

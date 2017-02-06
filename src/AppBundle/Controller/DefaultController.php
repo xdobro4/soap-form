@@ -22,13 +22,13 @@ class DefaultController extends Controller
 	public function indexAction(Request $request): Response
 	{
 		/** @var UserFormFactory $formFactory */
-		$formFactory = $this->get('user.formFactory');
+		$formFactory = $this->get('user.form.factory');
 		$form = $formFactory->create();
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted()) {
 			/** @var UserFormService $formProcessService */
-			$formProcessService = $this->get('user.formService');
+			$formProcessService = $this->get('user.form.service');
 			try {
 				$formProcessService->processForm($form, new User);
 				$this->addFlash('success', 'saved');

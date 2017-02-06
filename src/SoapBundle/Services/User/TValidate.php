@@ -5,11 +5,11 @@ namespace SoapBundle\Services\User;
 
 
 use Exception\InvalidArgumentException;
-use Symfony\Component\Validator\Validator\RecursiveValidator;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 trait TValidate
 {
-	/** @var RecursiveValidator */
+	/** @var ValidatorInterface */
 	private $validator;
 
 	private function validate($entity)

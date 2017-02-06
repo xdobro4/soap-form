@@ -72,6 +72,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-twig:
-    form:
-        resources: ['bootstrap_3_layout.html.twig']

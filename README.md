@@ -36,6 +36,17 @@ spuštění všech testů. Testy používají vlastní DB enviromentu `test`.
 ./vendor/bin/simple-phpunit 
 ```
 
+## using soap as form validator+inserter
+
+
+parameter.yml
+```
+parameters:
+	soap_url: http://localhost:8000/soap?WSDL
+```
+
+> Only for nginx/apache. Dev server is unnable to process as parallel processes.
+
 ## soap description
 WSDL popis SOAP služby
 ```

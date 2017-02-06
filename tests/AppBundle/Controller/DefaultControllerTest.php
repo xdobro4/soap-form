@@ -52,8 +52,8 @@ class DefaultControllerTest extends WebTestCase
 	{
 		$client = static::createClient();
 		$crawler = $client->request('GET', '/');
-		$button = $crawler->selectButton('form_save');
 
+		$button = $crawler->selectButton('form_save');
 		$form = $button->form($data);
 		$client->submit($form);
 

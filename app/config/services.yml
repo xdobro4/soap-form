@@ -7,13 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    user.formFactory:
+    user.form.factory:
         class: AppBundle\Services\User\UserFormFactory
         arguments: ['@form.factory']
-    user.formService:
+    user.form.service:
         class: AppBundle\Services\User\UserFormService
-        arguments: ['@user.soapService']
+        arguments: ['@user.soap.service', '%soap_url%']
 
-    user.soapService:
+    user.soap.service:
         class: SoapBundle\Services\User\UserSoapService
         arguments: ['@doctrine.orm.entity_manager', '@validator', "%secret%"]

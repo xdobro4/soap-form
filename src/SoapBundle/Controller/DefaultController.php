@@ -18,7 +18,7 @@ class DefaultController extends Controller
 	{
 		$server = new \SoapServer(__DIR__ . '/user.wsdl');
 
-		$server->setObject($this->get('user.soapService'));
+		$server->setObject($this->get('user.soap.service'));
 
 		$response = new Response();
 		$response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
