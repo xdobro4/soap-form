@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+	<div class="row col-lg-6 col-lg-offset-3">
+		{% for type, flash_messages in app.session.flashBag.all() %}
+			{% for flash_message in flash_messages %}
+				<p class="alert alert-{{ type }}">
+					{{ flash_message }}
+				</p>
+			{% endfor %}
+		{% endfor %}
+
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+	</div>
+
+	<div class="row">
+		<table class="table table-condensed table-hover">
+			<tbody>
+			{% for item in users %}
+				<tr>
+					<td>{{ item.id }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.password }}</td>
+					<td>{{ item.email }}</td>
+					<td>
+						{#<a route-href="route: me">#}
+						<i class="fa fa-link" aria-hidden="true"></i>
+						{#</a>#}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

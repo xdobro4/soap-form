@@ -1,0 +1,14 @@
+user_form:
+  path: /
+  defaults: { _controller: AppBundle:Default:index }
+
+soap_server:
+  path: /soap
+  defaults: { _controller: SoapBundle:Default:index }
+
+soap2_client:
+  path: /client
+  defaults: { _controller: SoapBundle:Soap:client }
+soap2_server:
+  path: /server
+  defaults: { _controller: SoapBundle:Soap:server }

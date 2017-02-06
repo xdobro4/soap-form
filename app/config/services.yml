@@ -1,0 +1,19 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    user.formFactory:
+        class: AppBundle\Services\User\UserFormFactory
+        arguments: ['@form.factory']
+    user.formService:
+        class: AppBundle\Services\User\UserFormService
+        arguments: ['@user.soapService']
+
+    user.soapService:
+        class: SoapBundle\Services\User\UserSoapService
+        arguments: ['@doctrine.orm.entity_manager', '@validator', "%secret%"]
