@@ -8,4 +8,7 @@ before_script:
     - composer install
 
 script:
+    - cp app/config/parameters.yml.dist app/config/parameters.yml
+    - cp phpunit.xml.dist phpunit.xml
+    - php bin/console server:start
     - ./vendor/bin/simple-phpunit
