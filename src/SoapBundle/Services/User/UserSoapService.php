@@ -3,6 +3,7 @@
 namespace SoapBundle\Services\User;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
@@ -64,5 +65,14 @@ class UserSoapService
 			'email' => $email,
 			'permission' => $permission,
 		];
+	}
+
+	public function listUsers(int $offset = NULL, int $limit = NULL): array
+	{
+		try {
+			return $this->em->getRepository('AppBundle:User')->findBy([], ['id' => Criteria::DESC], $limit, $offset);
+		} catch (\Exception $e) { // @todo specifikovat presneji
+			throw new \SoapFault('ORM', 'read error');
+		}
 	}
 }
