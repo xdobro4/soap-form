@@ -41,7 +41,25 @@ class DefaultController extends Controller
 			}
 		}
 
-		$users = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
+		$soapUrl = $this->getParameter('soap_url');
+		if ($soapUrl) {
+			try {
+				// @todo umi symfony nejak pres config??
+				ini_set('soap.wsdl_cache_enabled', 0);
+
+				$c = new \SoapClient($soapUrl);
+
+				/** @noinspection PhpUndefinedMethodInspection */
+				$users = $c->listUsers();
+				dump('call soap');
+			} catch (\SoapFault $e) {
+				$this->addFlash('danger', $e->getMessage());
+				$users = [];
+			}
+		}
+		else {
+			$users = $this->get('user.soap.service')->listUsers();
+		}
 
 		return $this->render('default/index.html.twig', array(
 			'form' => $form->createView(),
