@@ -3,20 +3,28 @@
 namespace SoapBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
 
 	/**
-	 * @throws \InvalidArgumentException
-	 * @throws \UnexpectedValueException
+	 * @param Request $request
 	 *
-	 * @throws \LogicException
+	 * @return Response
+	 *
+	 * @throws \UnexpectedValueException
+	 * @throws \InvalidArgumentException
 	 */
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
-		$server = new \SoapServer(__DIR__ . '/user.wsdl');
+		// @todo umi symfony nejak pres config??
+		ini_set('soap.wsdl_cache_enabled', 0);
+
+		// replace cos it need url
+		$wsdl = $this->getWsdl($request->getUri());
+		$server = new \SoapServer($wsdl);
 
 		$server->setObject($this->get('user.soap.service'));
 
@@ -28,5 +36,12 @@ class DefaultController extends Controller
 		$response->setContent(ob_get_clean());
 
 		return $response;
+	}
+
+	private function getWsdl($uri): string
+	{
+		$content = file_get_contents(__DIR__ . '/user.wsdl');
+		$content = str_replace('@soap_url', $uri, $content); // by uri :]
+		return 'data://text/plain;base64,' . base64_encode($content);
 	}
 }
