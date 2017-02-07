@@ -1,4 +1,4 @@
-soap-form
+soap-form [![Build Status](https://travis-ci.org/xdobro4/soap-form.svg?branch=master)](https://travis-ci.org/xdobro4/soap-form)
 =========
 
 ## requiremens
