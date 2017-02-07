@@ -67,7 +67,7 @@ class User
 	/**
 	 * @return int
 	 */
-	public function getId(): int
+	public function getId()
 	{
 		return $this->id;
 	}
@@ -75,7 +75,7 @@ class User
 	/**
 	 * @return string
 	 */
-	public function getName(): string
+	public function getName()
 	{
 		return $this->name;
 	}
@@ -91,7 +91,7 @@ class User
 	/**
 	 * @return string
 	 */
-	public function getPassword(): string
+	public function getPassword()
 	{
 		return $this->password;
 	}
@@ -107,7 +107,7 @@ class User
 	/**
 	 * @return string
 	 */
-	public function getEmail(): string
+	public function getEmail()
 	{
 		return $this->email;
 	}
@@ -123,7 +123,7 @@ class User
 	/**
 	 * @return string
 	 */
-	public function getPermission(): string
+	public function getPermission()
 	{
 		return $this->permission;
 	}
