@@ -12,6 +12,7 @@ před spuštěním je nutno zkopírovat v `app/config/parameters.yml.dist` na `a
 
 ```
 cp app/config/parameters.yml.dist app/config/parameters.yml
+cp phpunit.xml.dist phpunit.xml
 ```
 
 
