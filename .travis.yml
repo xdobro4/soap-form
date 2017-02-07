@@ -12,3 +12,4 @@ script:
     - cp phpunit.xml.dist phpunit.xml
     - php bin/console server:start
     - ./vendor/bin/simple-phpunit
+    - php bin/console server:stop
