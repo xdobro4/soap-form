@@ -17,7 +17,6 @@ class DefaultControllerTest extends WebTestCase
 
 	}
 
-
 	public function formTestCases()
 	{
 		return [
@@ -53,10 +52,12 @@ class DefaultControllerTest extends WebTestCase
 		$client = static::createClient();
 		$crawler = $client->request('GET', '/');
 
+		// form test
 		$button = $crawler->selectButton('form_save');
 		$form = $button->form($data);
 		$client->submit($form);
 
+		// table test
 		$crawler = $client->reload();
 		$this->assertCount($expectedCount, $crawler->filter('tr'));
 	}
